@@ -1,0 +1,165 @@
+:root {
+	--cell-size: 120px;
+	--color: #81c3fd; /* for hover */
+	--color-set: #0275d8; /* when set */
+	--l: 10px; /* X line-width */
+}
+*,*::before,*::after {
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+	margin: 0;
+    background-image: url('assets/paper_bg.jpg');
+    background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+h1 {
+    width:100vw;
+    height:20vh;
+    color: black;
+    padding: 5vh 0;
+    background: url('assets/piece_of_paper.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'Rock Salt', cursive;
+}
+
+.board {
+	width: 100vw;
+    margin-top:30px;
+	height: 50vh;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	justify-items: center;
+	align-items: center;
+	grid-template-columns: repeat(3, auto)
+}
+.cell {
+	width: var(--cell-size);
+	height: var(--cell-size);
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+}
+/* remove border for edges */
+.cell:nth-child(1), .cell:nth-child(2), .cell:nth-child(3) {
+	border-top: none;
+}
+
+.cell:nth-child(1), .cell:nth-child(4), .cell:nth-child(7) {
+	border-left: none;
+}
+
+.cell:nth-child(3), .cell:nth-child(6), .cell:nth-child(9) {
+	border-right: none;
+}
+
+.cell:nth-child(7), .cell:nth-child(8), .cell:nth-child(9) {
+	border-bottom: none;
+}
+.cell.x, .cell.circle {
+	cursor: not-allowed;
+}
+/* for cross */
+.board.x .cell:not(.circle):not(.x):hover {
+	background: url('assets/x_drawn.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all ease-in .4s;
+}
+/* for cross (set) */
+.cell:not(.circle).x {
+	background: url('assets/x_drawn_red.png');
+    background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+    transition: all ease-in .4s;
+}
+/* for circle */
+.board.circle .cell:not(.circle):not(.x):hover {	
+	background: url('assets/circle_drawn.png');
+    background-size: 80% 80%;
+	background-repeat: no-repeat;
+	background-position: center;
+    transition: all ease-in .4s;
+}
+
+/* for circle (set) */
+.cell:not(.x).circle {
+	background: url('assets/circle_drawn_red.png');
+    background-size: 80% 80%;
+	background-repeat: no-repeat;
+	background-position: center;
+    transition: all ease-in .4s;
+}
+.winning-message {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('assets/paper_bg.jpg');
+    background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	font-size: 3rem;
+	font-family: 'Rock Salt', Courier, monospace;
+	flex-direction: column;
+}
+.winning-message button {
+    font-family: 'Rock Salt', Courier, monospace;
+	border-radius: 10px;
+    color:white;
+	font-size: 2rem;
+	background: url('assets/pencil_texture.jpeg');
+    background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	border: none;
+    box-shadow: black 3px 2px 5px;
+	padding: .25em .5em;
+	cursor: pointer;
+    transition: all ease-in .6s;
+}
+
+.winning-message button:hover {
+	border-bottom: 2px solid rgb(11, 57, 11);
+    border-right: 2px solid rgb(11, 57, 11);
+    transition: all ease-in .6s;
+    
+}
+.winning-message.show {
+	display: flex;
+}
+.follow {
+    display:flex;
+    min-width: 200px;
+    width: 20%;
+    margin:30px auto;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.follow img {
+    width:30px;
+    height:auto;
+}
